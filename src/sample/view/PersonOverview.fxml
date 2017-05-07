@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -53,9 +54,9 @@
                       </GridPane>
                           <HBox spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                              <children>
-                                <Button mnemonicParsing="false" text="New..." />
-                                <Button mnemonicParsing="false" text="Edit..." />
-                                <Button mnemonicParsing="false" text="Delete" />
+                                <Button mnemonicParsing="false" onAction="#handleNewPerson" text="New..." />
+                                <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit..." />
+                                <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
                              </children>
                           </HBox>
                </children>

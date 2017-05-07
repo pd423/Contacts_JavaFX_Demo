@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.view.PersonEditDialogController;
 import sample.view.PersonOverviewController;
 
 import java.io.IOException;
@@ -91,5 +93,42 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    /**
+     * Opens a dialog to edit details for the specified person. If the user clocks OK, the changes are saved into the
+     * provided person object and true is returned.
+     *
+     * @param person the person object to be edited
+     * @return TRUE if the user clicked OK, FALSE otherwise
+     */
+    public boolean showPersonEditDialog(Person person) {
+        try {
+            // Load the fxml and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/PersonEditDialog.fxml"));
+            AnchorPane personEditDialog = loader.load();
+
+            // Create the dialog stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit person");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mPrimaryStage);
+            Scene scene = new Scene(personEditDialog);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PersonEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPerson(person);
+
+            // Show the dialog and wait until the user closes it.
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
