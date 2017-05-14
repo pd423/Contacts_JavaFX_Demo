@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -37,6 +38,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         mPrimaryStage = primaryStage;
         mPrimaryStage.setTitle("Contacts");
+
+        // Set the icon
+        mPrimaryStage.getIcons().add(new Image("file:res/drawable/ic_launcher.png"));
 
         initRootLayout();
         showPersonOverview();
