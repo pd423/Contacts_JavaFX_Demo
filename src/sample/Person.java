@@ -4,7 +4,9 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import sample.util.LocalDateAdapter;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 
 /**
@@ -96,6 +98,7 @@ public class Person {
         return mCity;
     }
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getBirthday() {
         return mBirthday.get();
     }
